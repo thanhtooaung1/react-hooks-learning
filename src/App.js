@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import UseMemoTest from "./UseMemoTest";
 
 function App() {
+  const [fruit, setFruit] = useState("Orange");
+  const [count, setCount] = useState(0);
+
+  const changeFruit = () => {
+    setFruit(fruit === "Apple" ? "Orange" : "Apple");
+  };
+
+  const increaseThree = () => {
+    setCount((pre) => pre + 1);
+    setCount((pre) => pre + 1);
+    setCount((pre) => pre + 1);
+  };
+
+  useEffect(() => {
+    console.log("Calling api...");
+  }, [fruit, count]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UseMemoTest />
+    </>
   );
 }
 
